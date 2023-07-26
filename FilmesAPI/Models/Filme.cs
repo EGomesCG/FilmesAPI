@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-namespace FilmesAPI.Models;
+namespace FilmesApi.Models;
 public class Filme
 {
     [Key]//Estou informando que este campo ID é uma chave para o BD
@@ -18,7 +18,9 @@ public class Filme
     [Range(70, 600, ErrorMessage ="A duração deve ter 70 e 600 minutos")]//Estipulando minimo e máximo 
     public int Duracao { get; set; }
 
-    public string Diretor { get; set; }
+    public virtual ICollection<Sessao> Sessoes { get; set; } //Um filme pode ter uma ou muitas sessões => 1 - sessao : n - filme
+
+    // public string Diretor { get; set; }
 }
 //A anotação[Required] torna obrigatório passar um parâmetro determinado.
 //A anotação[StringLength] limita o tamanho de caracteres de uma string.

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FilmesAPI.Data.Dtos;
+namespace FilmesApi.Data.Dtos;
 public class UpdateFilmeDto
 {
     public string Titulo { get; set; }
@@ -13,5 +13,5 @@ public class UpdateFilmeDto
     [Range(70, 600, ErrorMessage = "A duração deve ter 70 e 600 minutos")]
     public int Duracao { get; set; }
 
-    public string Diretor { get; set; }
+    //public string Diretor { get; set; }
 }

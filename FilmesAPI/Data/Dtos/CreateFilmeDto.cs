@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FilmesAPI.Data.Dtos;
+namespace FilmesApi.Data.Dtos;
 public class CreateFilmeDto
 {
     //A propriedade de id não precisa está aqui porque o usuário não ira enviar id.
@@ -21,5 +21,5 @@ public class CreateFilmeDto
     [Range(70, 600, ErrorMessage = "A duração deve ter 70 e 600 minutos")]//Estipulando minimo e máximo 
     public int Duracao { get; set; }
 
-    public string Diretor { get; set; }
+    //public string Diretor { get; set; }
 }

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using FilmesAPI.Data.Dtos;
-using FilmesAPI.Models;
+using FilmesApi.Data.Dtos;
+using FilmesApi.Models;
 
-namespace FilmesAPI.Profiles;
+namespace FilmesApi.Profiles;
 
 //Teremos um perfil específico do AutoMapper que chamaremos de "profile". 
 //Essa classe hedar de profile

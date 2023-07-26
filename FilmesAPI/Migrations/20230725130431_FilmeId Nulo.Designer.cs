@@ -3,6 +3,7 @@ using System;
 using FilmesApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,13 +11,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilmesApi.Migrations
 {
     [DbContext(typeof(FilmeContext))]
-    partial class FilmeContextModelSnapshot : ModelSnapshot
+    [Migration("20230725130431_FilmeId Nulo")]
+    partial class FilmeIdNulo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.9")
+                .HasAnnotation("ProductVersion", "6.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("FilmesApi.Models.Cinema", b =>
@@ -120,7 +122,7 @@ namespace FilmesApi.Migrations
                         .HasForeignKey("CinemaId");
 
                     b.HasOne("FilmesApi.Models.Filme", "Filme")
-                        .WithMany()
+                        .WithMany("Sessoes")
                         .HasForeignKey("FilmeId");
 
                     b.Navigation("Cinema");
@@ -137,6 +139,11 @@ namespace FilmesApi.Migrations
                 {
                     b.Navigation("Cinema")
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("FilmesApi.Models.Filme", b =>
+                {
+                    b.Navigation("Sessoes");
                 });
 #pragma warning restore 612, 618
         }

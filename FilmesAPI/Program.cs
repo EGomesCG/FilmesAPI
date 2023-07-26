@@ -1,4 +1,4 @@
-using FilmesAPI.Data;
+using FilmesApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
@@ -10,8 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 var connectioString = builder.Configuration.GetConnectionString("FilmeConnection");
 
 //Além da configuração do BD precisamos passar mais um parametro, a autenticação - que o próprio MySql gerencia
+//Esse .UseLazyLoadingProxies() está indicando que quendo for instânciar uma classe e dentro dela existe outra
+//instância os dados da mesma também deve serem carregados
 builder.Services.AddDbContext<FilmeContext>(opts =>
-    opts.UseMySql(connectioString, ServerVersion.AutoDetect(connectioString)));
+    opts.UseLazyLoadingProxies()
+    .UseMySql(connectioString, ServerVersion.AutoDetect(connectioString)));
 
 //A ideia é que o AutoMapper faça mapeamento automático de um DTO 
 //Atravez do builder podemos add um serviço de map em todo contexto da aplicação
