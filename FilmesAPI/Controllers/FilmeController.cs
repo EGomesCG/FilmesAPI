@@ -29,9 +29,17 @@ public class FilmeController : ControllerBase
 
     //Consulta todos os filmes
     [HttpGet]
-    public  IEnumerable<ReadFilmeDto> RecuperaFilmes()
+    public  IEnumerable<ReadFilmeDto> RecuperaFilmes([FromQuery] int skip = 0, [FromQuery] int take = 50, [FromQuery] string? nomeCinema = null)
     {
-           return _mapper.Map<List<ReadFilmeDto>>(_context.Filmes.ToList());
+        if(nomeCinema == null)
+        {
+           return _mapper.Map<List<ReadFilmeDto>>(_context.Filmes.Skip(skip).Take(take).ToList());
+        }
+        //Consulta mais rebuscada sem nenhuma linha de SQL. Utilizamos apenas o LINQ — a própria sintaxe do C Sharp.
+        return _mapper.Map<List<ReadFilmeDto>>(_context.Filmes.Skip(skip).Take(take)
+            .Where(filme => filme.Sessoes //Filtro que busca por filme deste cinema
+            .Any(sessao => sessao.Cinema.Nome == nomeCinema)) //Compara o nome passado com os nomes conforme a sessão está vinculada
+            .ToList());//Irá lista a resultado
     }
 
     [HttpGet("{id}")] //Consulta apenas um filme por Id

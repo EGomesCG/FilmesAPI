@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
 namespace FilmesApi.Models;
+
 public class Cinema
 {
     [Key]
@@ -10,7 +10,7 @@ public class Cinema
     [Required(ErrorMessage ="Campo de nome é obrigatório.")]
     public string Nome { get; set; }
     
-    public int? EnderecoId { get; set; }//Todo cinema só pode existir se tiver um endereço associado
+    public int EnderecoId { get; set; }//Todo cinema só pode existir se tiver um endereço associado
                                         //Como o C# conseguiu deduzir que este campo é chave estrageira?
                                         //Tenho Endereco que é o nome da tabela endereço e
                                         //o sufixo Id que é a chave primaria da tabela endereço

@@ -4,7 +4,7 @@ namespace FilmesApi.Data.Dtos;
 public class CreateFilmeDto
 {
     //A propriedade de id não precisa está aqui porque o usuário não ira enviar id.
-
+    //public int Id { get; set; }
     //Posso colocar em cima dos campos as validações que quero que aconteça
     [Required(ErrorMessage = "O título do filme é obrigatório")]//Obrigatório - Add mensagem entre parentes
     public string Titulo { get; set; }

@@ -42,7 +42,8 @@ public class CinemaController : ControllerBase
         //retorno será um Enumerable de <ReadCinemaDto> e não somente um Cinema.
         //o _context.cinemas retorna um queryable, temos que convertê-lo para uma lista, adicionando à direita dos parênteses da query um .ToList().
         return _mapper.Map<List<ReadCinemaDto>>
-            (_context.Cinemas.FromSqlRaw($"SELECT  Id, Nome, EnderecoId FROM cinemas WHERE cinemas.EnderecoId = {enderecoId}").ToList());
+            (_context.Cinemas.FromSqlRaw(
+                $"SELECT  Id, Nome, EnderecoId FROM cinemas WHERE cinemas.EnderecoId = {enderecoId}").ToList());
     }
 
     [HttpGet("{id}")] //Consulta apenas um cinema por Id

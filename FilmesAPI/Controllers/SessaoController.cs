@@ -33,6 +33,7 @@ public class SessaoController : ControllerBase
     {
         return _mapper.Map<List<ReadSessaoDto>>(_context.Sessoes.ToList());
     }
+
     [HttpGet("{filmeId}/{cinemaId}")] // Ao invés de receber um {id} -> agora iremos receber: {filmeId} e {cinemaId}
     public IActionResult RecuperaSessoesPorId(int filmeId, int cinemaId)
     {
